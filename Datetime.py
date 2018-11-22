@@ -6,13 +6,7 @@ from datetime import datetime
 from time import sleep
 import tkinter as tk
 from StoringVariable import Data_get
-def getpm(at):
-       if at == True:
-          pm = at
-          return True
-       else:
-           return False
-
+#check variables
 def Getmin(min):
     if min < 60:
         minute = min
@@ -33,7 +27,7 @@ def Getsec(sec):
         return True
     else:
         return False
-
+#increments variables
 def incsec(second):
     sleep(1)
     second +=1
@@ -64,7 +58,6 @@ def inchour(hour, pm):
 
 
 def updatepm(pm, pmgui):
-    #checks if pm is true or not
     if pm == False:
         pmgui.value = ""
     else:
@@ -72,17 +65,12 @@ def updatepm(pm, pmgui):
 
 
 if __name__ == '__main__':
-    # defining variables
     second, hour, minute = Data_get('time')
+    pm = True
     while(True):
-        if (Getsec(second)):
-            incsec(second)
-        else:
-           minute =  incmin(minute)
-        if (Getmin(minute)):
-            minute = incmin(minute)
-        else:
-            hour, pm = inchour(hour,pm)
+        second = incsec(second)
+        minute =  incmin(minute)
+        hour, pm = inchour(hour,pm)
         print(minute)
 
  
