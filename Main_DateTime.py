@@ -5,10 +5,11 @@ Does time for the smartwatch
 from datetime import datetime
 from time import sleep
 import tkinter as tk
+from StoringVariable import Data_get
 def getpm(at):
        if at == True:
           pm = at
-          return True, at
+          return True
        else:
            return False
 
@@ -38,25 +39,28 @@ def incsec(second):
     second +=1
     if second == 60:
         second = 0
-        incmin
-
+        return second
+    return second
 
 def incmin(minute):
     minute +=1
     if minute == 60:
         minute = 0
-        inchour
-
+        return minute
+    return minute
 
 def inchour(hour, pm):
     hour +=1
     if hour == 24:
         hour = hour-24
+        return hour, pm
     # call date function to increase the day by one
     else:
         if hour >= 13:
             hour = hour-12
             pm = not pm
+            return hour, pm
+    return hour, pm
 
 
 def updatepm(pm, pmgui):
@@ -69,19 +73,17 @@ def updatepm(pm, pmgui):
 
 if __name__ == '__main__':
     # defining variables
-    second = 49
-    minute = 49
-    hour = 49
+    ticks, hour, minute, second, day, month, year, pm = Data_get()
     while(True):
         if (Getsec(second)):
-            second = incsec(second)
+            incsec(second)
         else:
-            minute = incmin(minute)
-        if (Getminute):
+           minute =  incmin(minute)
+        if (Getmin(minute)):
             minute = incmin(minute)
         else:
-            hour = inchour(hour)
-    print(minute)
+            hour, pm = inchour(hour,pm)
+        print(minute)
 
  
     
