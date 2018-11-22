@@ -33,21 +33,19 @@ def Getsec(sec):
     else:
         return False
 
-def incsec(second,minute,hour):
+def incsec(second):
     sleep(1)
     second +=1
     if second == 60:
         second = 0
         incmin
-    return second
 
 
-def incmin(minute,hour):
+def incmin(minute):
     minute +=1
     if minute == 60:
         minute = 0
         inchour
-    return minute
 
 
 def inchour(hour, pm):
@@ -75,9 +73,15 @@ if __name__ == '__main__':
     minute = 49
     hour = 49
     while(True):
-        if (Getsec(second) and Getmin(minute) and Gethour(hour)):
-                incsec(second,minute,hour)
-                print(minute)
+        if (Getsec(second)):
+        second = incsec(second)
+        else
+        minute = incmin(minute)
+        if (Getminute)
+        minute = incmin(minute)
+        else
+        hour = inchour(hour)
+    print(minute)
 
  
     
