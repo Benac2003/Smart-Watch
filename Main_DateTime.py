@@ -73,7 +73,7 @@ def updatepm(pm, pmgui):
 
 if __name__ == '__main__':
     # defining variables
-    ticks, hour, minute, second, day, month, year, pm = Data_get()
+    second, hour, minute = Data_get('time')
     while(True):
         if (Getsec(second)):
             incsec(second)
