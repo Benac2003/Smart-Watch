@@ -75,11 +75,11 @@ if __name__ == '__main__':
     while(True):
         if (Getsec(second)):
             second = incsec(second)
-        else
+        else:
             minute = incmin(minute)
-        if (Getminute)
+        if (Getminute):
             minute = incmin(minute)
-        else
+        else:
             hour = inchour(hour)
     print(minute)
 
