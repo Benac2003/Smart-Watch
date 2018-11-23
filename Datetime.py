@@ -1,4 +1,4 @@
-"""
+."""
 Does time for the smartwatch
 """
 # Imports modules
