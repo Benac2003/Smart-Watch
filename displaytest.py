@@ -1,14 +1,16 @@
 import kivy
 kivy.require("1.9.0")
 from kivy.app import App
-from kivy.uix.widget import Widget
-class Lockscreen(Widget):
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.pagelayout import PageLayout
+
+class GUI(PageLayout):
     pass
 
 class Main_App(App):
     
     def build(self):
-        return Lockscreen()
+        return GUI()
 
-Smart-Watch = Main_App()
-Smart-Watch.run()
+Smart_Watch = Main_App()
+Smart_Watch.run()
