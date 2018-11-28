@@ -1,19 +1,33 @@
-#:kivy 1.9.0
+#: import CheckBox kivy.uix.checkbox
+
 <TimeDate@Label>:
     font_size: 32
     font_colour: 51,153,255
     size: 150, 50
-    background_colour: 0,0,0,0
-    size_hint: .4, .3   
+    background_colour: 1,1,1,1 
 
+<CustFloatLayout>:
+    TimeDate: 
+        text:"fdsf"
+        size_hint_x: .80
+        pos_hint: {"left":5, "centre_y":5}
+
+    Label:
+        text: str(slider_id.value)
     
-<GUI>:
-    BoxLayout:
-        orientation:'vertical'
-        padding: 300, 10, 10, 300
-        TimeDate:
-            text: app.hour
-        TimeDate: 
-            text:"fdf"
-    Button:
-        text:"hi"
+    Slider:
+        id: slider_id
+        min: -100
+        max: 100
+        value:0
+        step:1
+        pos_hint: {"right_x": 1, "centre_y":1}
+    
+    Label:
+        text: "ON/OFF"
+
+    Switch:
+        id: switch_id
+        on_active: root.switch_on(self, self.active)
+        pos_hint: {"left_x": 1, "centre_y":1}
+            
