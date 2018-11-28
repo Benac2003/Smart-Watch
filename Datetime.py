@@ -1,17 +1,12 @@
-"""
+."""
 Does time for the smartwatch
 """
 # Imports modules
 from datetime import datetime
 from time import sleep
 import tkinter as tk
-def getpm(at):
-       if at == True:
-          pm = at
-          return True, at
-       else:
-           return False
-
+from StoringVariable import Data_get
+#check variables
 def Getmin(min):
     if min < 60:
         minute = min
@@ -32,37 +27,37 @@ def Getsec(sec):
         return True
     else:
         return False
-
-def incsec(second,minute,hour):
+#increments variables
+def incsec(second):
     sleep(1)
     second +=1
     if second == 60:
         second = 0
-        incmin
+        return second
     return second
 
-
-def incmin(minute,hour):
+def incmin(minute):
     minute +=1
     if minute == 60:
         minute = 0
-        inchour
+        return minute
     return minute
-
 
 def inchour(hour, pm):
     hour +=1
     if hour == 24:
         hour = hour-24
+        return hour, pm
     # call date function to increase the day by one
     else:
         if hour >= 13:
             hour = hour-12
             pm = not pm
+            return hour, pm
+    return hour, pm
 
 
 def updatepm(pm, pmgui):
-    #checks if pm is true or not
     if pm == False:
         pmgui.value = ""
     else:
@@ -70,14 +65,13 @@ def updatepm(pm, pmgui):
 
 
 if __name__ == '__main__':
-    # defining variables
-    second = 49
-    minute = 49
-    hour = 49
+    second, hour, minute = Data_get('time')
+    pm = True
     while(True):
-        if (Getsec(second) and Getmin(minute) and Gethour(hour)):
-                incsec(second,minute,hour)
-                print(minute)
+        second = incsec(second)
+        minute =  incmin(minute)
+        hour, pm = inchour(hour,pm)
+        print(minute)
 
  
     

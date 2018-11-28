@@ -44,23 +44,24 @@ def main(ticks, minute, second, hour, hourclock, pm, day, month, year):
         select_all_tasks(conn)
 
 
-if __name__ == '__main__':
-    main()
-
-def Data_get():
+def Data_get(data):
     #gets Data from Database
     DateTime_Database = "DATABASE/TimeDate.db"
     conn = create_connection(DateTime_Database)
     cur = conn.cursor()
     cur.execute("Select * From data")
     row = cur.fetchone()
-    ticks = int(row[0])
-    hour = int(row[1])
-    minute = int(row[2])
-    second = int(row[3])
-    day = int(row[4])
+    if data == 'time':
+        hour = int(row[1])
+        minute = int(row[2])
+        second = int(row[3])
+        return second, hour, minute
+    """day = int(row[4])
     month = int(row[5])
     year = int(row[6])
-    pm = bool(row[7])
-    
-    return ticks, hour, minute, second, day, month, year, pm
+    pm = bool(row[7])"""
+    return None
+
+if __name__ == '__main__':
+    second, hour, minute = Data_get('time')
+    print(hour)

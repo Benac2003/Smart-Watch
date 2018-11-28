@@ -1,32 +1,45 @@
-
-#kivy
+import kivy
 from kivy.app import App
-from kivy.uix.label import Label
+from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
-from kivy.properties import StringProperty
-from kivy.lang import *
-from StoringVariables import *
+from kivy.uix.popup import Popup
+from kivy.core.window import Window
+from kivy.uix.screenmanager import Screen, ScreenManager
+class CustomPopup(Popup):
+    pass
 
-#update time and date
-def Time(ticks, hour, second, minute,day, month, year):
-    time = "%02d : %02d : %02d" % (hour, minute, second)
-    date = "%02d/%02d/%04d" % (day, month, year)
-    return time, date
+class Homescreen(Screen):
+    pass
 
-#Imports data from app.kv
-class Lockscreen(Widget):
-    time = StringProperty()
-    def Updatetime(self, **kwargs):
-        super(Lockscreen, self).Updatetime(**kwargs)
-    def change_text(self):
-        #update time
-        ticks, hour, minute, second, day, month, year, pm = Data_get()
-        self.time = self.time = "%02d : %02d : %02d" % (hour, minute, second)
+class Lockscreen(Screen):
+    pass
 
-#builds gui
-class app(App):
+screen_manager = ScreenManager()
 
+screen_manager.add_widget(Homescreen(name="Homescreen"))
+screen_manager.add_widget(Lockscreen(name="Lockscreen"))
+
+class CustFloatLayout(FloatLayout):
+    checkbox_is_active = ObjectProperty(False)
+
+    def switch_on(self, instance, value):
+        if value is True:
+            print("switch on")
+        else:
+            print("switch of")
+    
+    def open_popup(self):
+        the_popup = CustomPopup()
+        the_popup.open()
+    
+    def spinner_clicked(self, value):
+        print("Spinner Value" + value)
+
+class Main_App(App):
     def build(self):
-        return Lockscreen()
-app().run()
+        Window.clearcolour = (1,1,1,1)
+        return screen_manager
 
+Smart_Watch = Main_App()
+Smart_Watch.run()
